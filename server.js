@@ -7,7 +7,7 @@ const User = require("./models/user");
 
 const app = express();
 
-const dbURI = "mongodb+srv://josteinla:Test1234@cluster0.roowpqv.mongodb.net/Skall?retryWrites=true&w=majority";
+const dbURI = "mongodb+srv://josteinla:Test1234@cluster0.bc3pzko.mongodb.net/Skall?retryWrites=true&w=majority";
 mongoose.connect(dbURI)
   .then(() => {
     app.listen(3000);
@@ -104,4 +104,35 @@ app.post("/nyttpassord", async (req, res) => {
     } else {
         console.log("Brukeren finnes ikke i systemet")
     }
+})
+
+app.get("/slettbruker", (req, res) => {
+    console.log("slett bruker")
+    let info = "";
+    res.render("slettbruker.ejs", { info: info });
+})
+
+app.post("/slettbruker", async (req, res) => {
+    const { email } = req.body;
+    console.log(email);
+    let info = "";
+    const user = await User.findOne({ email: email });
+    if (user) {
+        let myqery = { email: email };
+
+        const result = await User.deleteOne(myqery);
+
+        if (result.deletedCount === 1) {
+                let info = "Klarte å slette " + email;
+                console.log(info)
+                res.render("slettbruker.ejs", { info: info })
+        } else {
+                let info = "Klarte ikke å slette bruker " + email;
+                console.log(info)
+                res.render("slettbruker.ejs", { info: info })
+        }
+    } else {
+        console.log("Brukeren finnes ikke i systemet")
+    }
+    
 })

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slett bruker</title>
+</head>
+<body>
+    <h1>Slett bruker</h1>
+    <form action="/slettbruker" method="post">
+        <label for="email">email:</label>
+        <input type="email" name="email" required> <br> <br>
+        <input type="submit" value="Slett bruker"> <br> <br>
+    </form>
+    <br> <br>
+
+    <form action="/" method="get">
+        <input type="submit" name="hjem" value="Hjem">
+    </form>
+
+    <h2> <%= info %> </h2>
+</body>
+</html>
