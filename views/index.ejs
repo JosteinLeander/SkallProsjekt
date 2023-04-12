@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/alert.js"></script>
+    <title>Hjem</title>
+</head>
+<body>
+    <h1>Hallo</h1>
+    <% if (user != "") { %>
+        <h2> <%= user %> er logget inn </h2>
+        <form action="/nyttpassord" method="get">
+            <input type="submit" name="submit" value="Lag nytt passord">
+        </form>
+    <% } else { %>
+        <form action="/" method="post">
+            <label for="email">email:</label>
+            <input type="email" name="email" required> <br> <br>
+            <label for="password">passord</label>
+            <input type="password" name="password" required> <br> <br>
+            <input type="submit" name="submit" value="Logg inn">
+            <br> <br> <br>
+        </form>
+        <form action="/lagbruker" method="get">
+            <input type="submit" name="lagbruker" id="lagbruker" value="Lag ny bruker">
+        </form>
+    <% } %>
+    <% if (info != "") { %>
+        <h2> <%= info %> </h2>
+    <% } %>
+    
+    
+    
+</body>
+</html>
